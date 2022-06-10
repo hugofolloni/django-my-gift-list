@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'create_event' %}" class='form'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">Nome</label>
+            <input type="text" name="{{ form.name.name }}" class="form-control" id="first_name" placeholder="Name" value="{{ form.first_name.value }}">
+        </div>
+        <div class="form-group">
+            <label for="date">Data</label>
+            <input type="date" name="{{ form.date.name }}" class="form-control" id="date" placeholder="Date" value="{{ form.date.value }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-page">
+        <header>
+            <h1>mygiftlist</h1>
+            <h4>Your app to manage gift lists</h4>
+        </header>
+        <div class="redirect">
+            <input id='redirect-input' type="text">
+            <button onclick="redirect()">Search</button>
+        </div>
+        <div class="signup">
+            <a href="/signup">Login</a>
+        </div>
+    </div>
+    <script>
+        const redirect = () => {
+            const input = document.getElementById('redirect-input').value;
+            window.location.href = `/gifts/${input}`;
+        }
+    </script>
+</body>
+</html>

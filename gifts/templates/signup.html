@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="create_user">
+        <h1>Registrar</h1>
+        <form method="post" action="{% url 'signup' %}" class='form'>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">Nome</label>
+                <input type="text" name="{{ form.name.name }}" class="form-control" id="name" placeholder="Nome" value="{{ form.name.value }}">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Sobrenome</label>
+                <input type="text" name="{{ form.password.name }}" class="form-control" id="password" placeholder="password" value="{{ form.password.value }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="{{ form.email.name }}" class="form-control" id="email" placeholder="Email" value="{{ form.email.value }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
