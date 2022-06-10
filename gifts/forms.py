@@ -1,11 +1,13 @@
 from django import forms
 from django.forms import ModelForm
 from gifts.models import Gift, User, Event
+from django.contrib.auth.forms import UserCreationForm
 
 class GiftForm(ModelForm):
     class Meta:
         model = Gift
-        fields = ['name', 'description', 'link', 'image', 'price']
+        fields = ['name', 'description', 'link', 'price']
+        exclude = ['checked', 'image']
 
 class EventForm(ModelForm):
     name = forms.CharField(max_length=255, required=False)
@@ -16,11 +18,8 @@ class EventForm(ModelForm):
         fields = ['date', 'name']
         exclude = ['user']
 
-class UserForm(ModelForm):
-    name = forms.CharField(max_length=255, required=False)
-    email = forms.EmailField(required=False)
-    password = forms.CharField(max_length=255, required=False)
     
+class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'email', 'password']
+        fields = ['username', 'password1', 'password2']

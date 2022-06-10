@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from gifts.models import Gift, User, Event
-from gifts.forms import EventForm, UserForm
+from gifts.forms import EventForm, UserForm, GiftForm
 
 # Create your views here.
 
@@ -20,8 +20,18 @@ def signup(request):
 
 def giftlist(request, id):
     event = Event.objects.get(id=id)
-
-    return render(request, 'giftlist.html', {'event': event})
+    gifts = Gift.objects.filter(event=event)
+    if request.method == "POST":
+        form = GiftForm(request.POST)
+        if form.is_valid():
+            gift = form.save(commit=False)
+            gift.event = event
+            gift.save()
+            gifts = Gift.objects.filter(event=event)
+            return render(request, 'giftlist.html', {'form': form, 'event': event, 'gifts': gifts})
+    else:
+        form = GiftForm()
+    return render(request, 'giftlist.html', {'form': form, 'event': event, 'gifts': gifts})
 
 def create_event(request):
     if request.method == "POST":
